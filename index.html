@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dan Green - Rural Compassion Missionary Ministry</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-mustard: #D4AF37;
+            --secondary-mustard: #B8941F;
+            --warm-brown: #8B4513;
+            --cream: #F5F5DC;
+            --soft-white: #FEFEFE;
+            --text-dark: #2C2C2C;
+            --text-medium: #5A5A5A;
+            --accent-green: #228B22;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--cream);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            background: var(--soft-white);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-bottom: 3px solid var(--primary-mustard);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-mustard);
+        }
+
+        .logo i {
+            font-size: 28px;
+            color: var(--warm-brown);
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .logo-main {
+            font-size: 22px;
+            color: var(--primary-mustard);
+        }
+
+        .logo-sub {
+            font-size: 12px;
+            color: var(--text-medium);
+            font-weight: normal;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-mustard);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--primary-mustard);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.25)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23F5F5DC" width="1200" height="800"/><path fill="%23D4AF37" opacity="0.1" d="M0,400 Q300,300 600,400 T1200,400 L1200,800 L0,800 Z"/><circle fill="%238B4513" opacity="0.1" cx="200" cy="200" r="100"/><circle fill="%238B4513" opacity="0.1" cx="1000" cy="150" r="80"/><rect fill="%23228B22" opacity="0.1" x="100" y="600" width="50" height="100"/><rect fill="%23228B22" opacity="0.1" x="900" y="550" width="40" height="120"/></svg>');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding-top: 100px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-photo {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 4px solid var(--primary-mustard);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            margin: 0 auto 30px;
+            overflow: hidden;
+            background: var(--soft-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-photo-placeholder {
+            color: var(--primary-mustard);
+            font-size: 3rem;
+            text-align: center;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-subtitle {
+            color: var(--primary-mustard);
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            color: var(--text-medium);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--primary-mustard);
+            color: white;
+            padding: 18px 45px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .cta-button:hover {
+            background: var(--secondary-mustard);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        .section {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .section:nth-child(even) {
+            background: var(--soft-white);
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background: var(--primary-mustard);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-medium);
+            margin-bottom: 50px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px;
+            align-items: center;
+            margin-top: 60px;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border: 4px solid var(--primary-mustard);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-text {
+            color: var(--text-dark);
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 25px;
+            color: var(--primary-mustard);
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: var(--text-medium);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .stat-item {
+            background: var(--primary-mustard);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+
+        .ministry-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .ministry-card {
+            background: var(--soft-white);
+            padding: 40px 30px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid var(--cream);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ministry-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-mustard);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .ministry-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .ministry-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary-mustard);
+        }
+
+        .ministry-card i {
+            font-size: 3rem;
+            color: var(--primary-mustard);
+            margin-bottom: 20px;
+        }
+
+        .ministry-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .ministry-card p {
+            color: var(--text-medium);
+            line-height: 1.6;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+            margin-top: 60px;
+        }
+
+        .contact-info,
+        .support-options {
+            background: var(--soft-white);
+            padding: 40px;
+            border-radius: 10px;
+            border: 2px solid var(--cream);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            color: var(--text-dark);
+            padding: 15px 0;
+            border-bottom: 1px solid var(--cream);
+        }
+
+        .contact-item:last-child {
+            border-bottom: none;
+        }
+
+        .contact-item i {
+            font-size: 1.3rem;
+            color: var(--primary-mustard);
+            margin-right: 20px;
+            width: 30px;
+        }
+
+        .support-button {
+            display: block;
+            background: var(--soft-white);
+            color: var(--text-dark);
+            padding: 18px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            text-align: center;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary-mustard);
+        }
+
+        .support-button:hover {
+            background: var(--primary-mustard);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .support-button i {
+            margin-right: 10px;
+        }
+
+        .partnership-section {
+            background: var(--primary-mustard);
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+            margin: 60px 0;
+            padding: 60px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .partnership-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle fill="rgba(255,255,255,0.05)" cx="20" cy="20" r="15"/><circle fill="rgba(255,255,255,0.05)" cx="80" cy="30" r="10"/><circle fill="rgba(255,255,255,0.05)" cx="60" cy="70" r="12"/></svg>');
+        }
+
+        .partnership-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .partnership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .partnership-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .partnership-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .partnership-item p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .footer {
+            background: var(--text-dark);
+            color: white;
+            text-align: center;
+            padding: 50px 0 30px;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .social-links a {
+            color: var(--cream);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid var(--primary-mustard);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-mustard);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer p {
+            color: var(--cream);
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .ministry-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .partnership-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">
+                    <i class="fas fa-seedling"></i>
+                    <div class="logo-text">
+                        <span class="logo-main">Rural Compassion Missionary</span>
+                        <span class="logo-sub">Small Towns, Big Hearts</span>
+                    </div>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#ministry">Ministry</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#support">Partner</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-photo">
+                    <!-- Replace the placeholder with an actual photo -->
+                   <img src="images/dan-green-photo.jpg" alt="Dan & Cindy Green">
+                    <!-- To use a real photo, replace the placeholder div above with:
+                    <img src="images/dan-green-photo.jpg" alt="Dan Green"> -->
+                </div>
+                <div class="hero-subtitle">Serving Rural Communities</div>
+                <h1>Dan & Cindy Green</h1>
+                <p>Bringing hope and compassion to small towns across America through church partnerships and community service</p>
+                <a href="#support" class="cta-button">Partner With Us</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="container">
+            <h2>Our Heart for Rural Communities</h2>
+            <p class="section-subtitle">Strengthening small towns by empowering local churches to serve their communities with Christ's love</p>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">[Add]</span>
+                    <span class="stat-label">Communities Served</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">[Add]</span>
+                    <span class="stat-label">Years of Service</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">[Add]</span>
+                    <span class="stat-label">Church Partnerships</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">[Add]</span>
+                    <span class="stat-label">Lives Impacted</span>
+                </div>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-image">
+                    <img src="images/dan-green-photo-about.jpg" alt="Dan Green">
+                </div>
+                <div class="about-text">
+                    <h3>Called to Serve Small Towns</h3>
+                    <p>I am Dan Green, and I've dedicated my life to serving rural America through Rural Compassion. We've been working alongside local churches and community leaders to bring hope and practical help to small towns that often feel forgotten.</p>
+                    <p>My approach focuses on empowering local churches to become serving centers in their communities. I believe that when churches move outside their four walls and follow Christ's example of service, entire communities are transformed.</p>
+                    <p>Through training, resourcing, and partnership, I help rural pastors and church leaders dream big dreams for their communities and develop sustainable ministries that address real needs while sharing the Gospel.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ministry" class="section">
+        <div class="container">
+            <h2>Our Ministry Focus</h2>
+            <p class="section-subtitle">Empowering rural churches to strengthen their communities through compassionate service</p>
+            
+            <div class="ministry-cards">
+                <div class="ministry-card">
+                    <i class="fas fa-hands-helping"></i>
+                    <h3>Church Serve Training</h3>
+                    <p>Equipping rural churches to move outside their walls and serve their communities with practical ministry solutions and strategic partnerships.</p>
+                </div>
+                <div class="ministry-card">
+                    <i class="fas fa-school"></i>
+                    <h3>School Partnerships</h3>
+                    <p>Helping churches become the best friend of their local public schools through volunteer programs, resource support, and community engagement.</p>
+                </div>
+                <div class="ministry-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Community Stakeholder Relations</h3>
+                    <p>Building bridges between churches and community leaders, business owners, law enforcement, and other local influencers for collaborative impact.</p>
+                </div>
+                <div class="ministry-card">
+                    <i class="fas fa-heart"></i>
+                    <h3>Compassion Ministries</h3>
+                    <p>Providing resources and training for food pantries, clothing distribution, disaster relief, and other practical ways to meet community needs.</p>
+                </div>
+                <div class="ministry-card">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Leadership Development</h3>
+                    <p>Mentoring rural pastors and church leaders through coaching, conferences, and ongoing support to maximize their community impact.</p>
+                </div>
+                <div class="ministry-card">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Vision Casting</h3>
+                    <p>Helping small town churches discover their unique potential and develop customized strategies to transform their communities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="container">
+            <h2>Connect With Us</h2>
+            <p class="section-subtitle">Ready to join our mission of bringing hope to rural America? We'd love to hear from you!</p>
+            
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3 style="color: var(--primary-mustard); margin-bottom: 30px; font-size: 1.5rem;">Get In Touch</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <strong>Email:</strong><br>
+                            dan@ruralcompassion.org
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <strong>Phone:</strong><br>
+                            (417) 576-2533
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <strong>Ministry Base:</strong><br>
+                            Rural Compassion<br>
+                            5517 West Farmers  Branch #140 Ozark, Missouri 65721
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-globe"></i>
+                        <div>
+                            <strong>Service Area:</strong><br>
+                            Rural Communities Across<br>
+                            Missouri & Arkansas
+                        </div>
+                    </div>
+                </div>
+                <div class="support-options">
+                    <h3 style="color: var(--primary-mustard); margin-bottom: 30px; font-size: 1.5rem;">Ways to Get Involved</h3>
+                    <a href="#" class="support-button">
+                        <i class="fas fa-praying-hands"></i> Join Our Prayer Team
+                    </a>
+                    <a href="#" class="support-button">
+                        <i class="fas fa-heart"></i> Become a Monthly Partner
+                    </a>
+                    <a href="#" class="support-button">
+                        <i class="fas fa-hand-holding-usd"></i> Make a One-Time Gift
+                    </a>
+                    <a href="#" class="support-button">
+                        <i class="fas fa-hands-helping"></i> Volunteer with Us
+                    </a>
+                    <a href="#" class="support-button">
+                        <i class="fas fa-envelope-open-text"></i> Receive Ministry Updates
+                    </a>
+                    <a href="#" class="support-button">
+                        <i class="fas fa-church"></i> Host a Training Event
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="support" class="section">
+        <div class="container">
+            <div class="partnership-section">
+                <div class="partnership-content">
+                    <h2 style="color: white; margin-bottom: 20px;">Partner With Our Mission</h2>
+                    <p style="font-size: 1.2rem; margin-bottom: 40px; max-width: 700px; margin-left: auto; margin-right: auto;">Your partnership enables us to continue empowering rural churches and transforming small communities across America. Together, we can bring hope where it's needed most.</p>
+                    
+                    <div class="partnership-grid">
+                        <div class="partnership-item">
+                            <h4><i class="fas fa-calendar-check"></i> Monthly Partnership</h4>
+                            <p>Consistent monthly support helps us plan long-term strategies and maintain ongoing relationships with rural communities.</p>
+                        </div>
+                        <div class="partnership-item">
+                            <h4><i class="fas fa-tools"></i> Special Projects</h4>
+                            <p>One-time gifts help fund specific training events, resource distributions, and emergency community assistance programs.</p>
+                        </div>
+                        <div class="partnership-item">
+                            <h4><i class="fas fa-pray"></i> Prayer Partnership</h4>
+                            <p>Join our prayer team to intercede for rural pastors, struggling communities, and breakthrough moments in ministry.</p>
+                        </div>
+                        <div class="partnership-item">
+                            <h4><i class="fas fa-share-alt"></i> Ministry Advocacy</h4>
+                            <p>Help us spread awareness about rural ministry needs by sharing our mission with your church and community.</p>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 40px;">
+                        <a href="#" class="cta-button" style="background: white; color: var(--primary-mustard); margin-right: 15px;">
+                            <i class="fas fa-hand-holding-heart"></i> Start Supporting
+                        </a>
+                        <a href="#" class="cta-button" style="background: rgba(255,255,255,0.1); border: 2px solid white;">
+                            <i class="fas fa-info-circle"></i> Learn More
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="social-links">
+                    <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" title="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+                <p>&copy; 2025 Dan Green - Rural Compassion Ministry<br>
+                Small Towns, Big Possibilities | Empowering Rural Churches to Serve</p>
+                <p style="margin-top: 15px; font-size: 0.9rem;">
+                    All donations are tax-deductible through Rural Compassion (501c3)
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href && href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+        // Add animation to ministry cards on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.ministry-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            observer.observe(card);
+        });
+
+        // Add CSS animation for cards
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInUp {
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
